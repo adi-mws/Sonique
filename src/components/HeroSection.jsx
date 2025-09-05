@@ -29,7 +29,7 @@ export default function HeroSection() {
                     trigger: earbudsRef.current,  // element that triggers the animation
                     start: "top top", 
                                 // when top of element hits top of viewport
-                    end: "bottom+=200 top",
+                    end: "bottom-=100px top",
                     pin: true,        // when bottom of element hits top of viewport
                     scrub: true                   // smooth scroll-linked animation
                 }
@@ -54,12 +54,12 @@ export default function HeroSection() {
     }, [])
     return (
         // Hero Section
-        <div className='HeroSection h-300 w-full flex flex-col items-center justify-end relative'>
+        <div className='HeroSection h-300 sticky -top-150 w-full flex flex-col items-center justify-end '>
             <img
                 src='/imgs/earbuds.png'
                 ref={earbudsRef}
                 alt='earbuds'
-                className='absolute top-20 z-100 drop-shadow-2xl drop-shadow-lime-300'
+                className='absolute top-20 drop-shadow-2xl drop-shadow-lime-300'
             />
             {/* Earbud feature card */}
             <div className='shadow-sm py-3 px-10 absolute top-80 left-[10%] flex items-center gap-4 rounded-xl earbud-feature-card'>

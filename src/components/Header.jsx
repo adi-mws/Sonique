@@ -11,37 +11,41 @@ export default function Header() {
     //   lenis.on('scroll', ScrollTrigger.update);
     useGSAP(() => {
 
-        gsap.fromTo(
-            soniqueRef.current,
-            {
-                scale: 0.5
+        const element = soniqueRef.current;
 
-            },  {
-                scale: 1
-            }
-        )
+        // 🔹 Play intro animation only if page is at the top
+        if (window.scrollY < 50) {
+          gsap.fromTo(
+            element,
+            { scale: 0.5 },
+            { scale: 1, duration: 1, ease: "power2.out" }
+          );
+        }
+    
+        // 🔹 Scroll animation
         gsap.fromTo(
-            soniqueRef.current,
-            { scale: 1, x: '20%', y: 0 },
-            {
-                scale: 0.1,
-                x: '-35%',
-                y: -170,
-                scrollTrigger: {
-                    trigger: soniqueRef.current,  // element that triggers the animation
-                    start: "top=-10px top",             // when top of element hits top of viewport
-                    end: "top+=100px top",            // when bottom of element hits top of viewport
-                    scrub: true                   // smooth scroll-linked animation
-                }
-            }
-        )
+          element,
+          { scale: 1, x: "20%", y: 0 },
+          {
+            scale: 0.1,
+            x: "-35%",
+            y: -190,
+            scrollTrigger: {
+              trigger: element,
+              start: "top-=10 top", // better: no weird offsets
+              end: "top+=100px top",
+              scrub: true,
+            },
+          }
+        );
     }, [])
 
 
     return (
-        <div className='p-3 w-full flex z-50 items-center fixed top-0 justify-center bg-white'>
+        <div className='p-3 w-full flex -z-10 items-center fixed top-0 justify-center bg-white'>
             <div className='relative flex-1/4 w-full'>
                 {/* Header front icon */}
+                <span className='font-head text-2xl ms-20'>SQ</span>
                 <p
                     ref={soniqueRef}
                     className='font-bold uppercase absolute text-[14em]'

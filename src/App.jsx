@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import Feature from './components/Feature'
+import Feature2 from './components/Feature2'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <HeroSection />
       <Feature />
+      <Feature2 />
     </>
   )
 }
