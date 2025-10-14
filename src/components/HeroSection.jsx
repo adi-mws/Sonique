@@ -10,25 +10,25 @@ export default function HeroSection() {
     useGSAP(() => {
 
         gsap.fromTo(
-            '.earbud-feature-card', 
+            '.earbud-feature-card',
             {
-                scale: 0, 
+                scale: 0,
                 opacity: 0,
             }, {
-                scale: 1, 
-                opacity: 1, 
-            }
+            scale: 1,
+            opacity: 1,
+        }
         )
         gsap.fromTo(
             earbudsRef.current,
-            { scale: 1, y: 0, opacity: 1,  },
+            { scale: 1, y: 0, opacity: 1, },
             {
                 scale: .8,
                 x: 340,
                 scrollTrigger: {
                     trigger: earbudsRef.current,  // element that triggers the animation
-                    start: "top top", 
-                                // when top of element hits top of viewport
+                    start: "top top",
+                    // when top of element hits top of viewport
                     end: "bottom-=100px top",
                     pin: true,        // when bottom of element hits top of viewport
                     scrub: true                   // smooth scroll-linked animation
@@ -50,7 +50,24 @@ export default function HeroSection() {
         //       }
         //     }
         //   );
-          
+
+        gsap.fromTo('.hero-secondary', {
+            x: -200,
+            opacity: 0,
+            stagger: 0.5
+        }, {
+            x: 0,
+            opacity: 1,
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: '.hero-secondary-container',
+                start: 'top 80%', 
+                stop: 'bottom',
+                toggleActions: 'play none none reverse'
+
+            }
+        })
+
     }, [])
     return (
         // Hero Section
@@ -71,16 +88,16 @@ export default function HeroSection() {
                 <span className='text-neutral-800 font-light italic'>99.8% Signal Stability</span>
             </div>
             <div className='shadow-sm py-3 px-10 absolute top-90 right-[10%] flex items-center gap-4 rounded-xl earbud-feature-card'>
-               <img src="/imgs/earbud-feature-card-3.svg" alt="earbud-feature-card-icon text-sm" />
-                <span className='text-neutral-800 font-light italic'>72-Hour Battery.<br/>
-                10-Min Quick Boost</span>
+                <img src="/imgs/earbud-feature-card-3.svg" alt="earbud-feature-card-icon text-sm" />
+                <span className='text-neutral-800 font-light italic'>72-Hour Battery.<br />
+                    10-Min Quick Boost</span>
             </div>
 
             <div className=' w-full grid grid-cols-2 p-30'>
-                <div className='w-full h-full flex flex-col gap-4'>
-                    <h2 className='text-black text-8xl font-bold'>Earbuds 109PX</h2>
-                    <p className='text-neutral-800'>From deep bass to crisp highs, every detail is delivered with stunning clarity. Engineered for comfort and powered by cutting-edge drivers.</p>
-                    <button className='mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black'>
+                <div className='w-full h-full flex flex-col gap-4 hero-secondary-container'>
+                    <h2 className='hero-secondary text-black text-8xl font-bold'>Earbuds 109PX</h2>
+                    <p className='hero-secondary text-neutral-800'>From deep bass to crisp highs, every detail is delivered with stunning clarity. Engineered for comfort and powered by cutting-edge drivers.</p>
+                    <button className='hero-secondary mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black'>
                         Explore Product
                     </button>
                 </div>
