@@ -6,20 +6,18 @@ export default function Feature3() {
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
     gsap.fromTo(".Feature3", {
-      width: 0,
-      height: 0,
+      opacity: 0,
       background: 'white'
     },
 
       {
-        width: 400,
-        height: 400,
-        backgroujnd: 'black',
+        opacity: 1,
+        background: 'white',
         scale: 1,
         opacity: 1,
         scrollTrigger: {
           trigger: '.Feature3',
-          start: 'top top',
+          start: 'top+=40',
           toggleActions: 'play none none reverse',
         }
       }
@@ -27,6 +25,9 @@ export default function Feature3() {
     )
   }, [])
   return (
-    <div className='bg-white w-full h-[100dvh] z-500 Feature3'>Feature3</div>
+    <div className='bg-white w-[100dvw] h-[400dvh] z-500 Feature3'>
+      <span className='text-lg'>Hwllo
+      </span>
+    </div>
   )
 }

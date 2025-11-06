@@ -1,6 +1,7 @@
 import { useGSAP } from '@gsap/react'
 import React, { useRef } from 'react'
 import gsap from 'gsap'
+import { AudioLines, Ear, LoaderPinwheel, MoveRight } from 'lucide-react'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 export default function HeroSection() {
@@ -61,7 +62,7 @@ export default function HeroSection() {
             stagger: 0.3,
             scrollTrigger: {
                 trigger: '.hero-secondary-container',
-                start: 'top 80%', 
+                start: 'top 80%',
                 stop: 'bottom',
                 toggleActions: 'play none none reverse'
 
@@ -93,14 +94,26 @@ export default function HeroSection() {
                     10-Min Quick Boost</span>
             </div>
 
-            <div className=' w-full grid grid-cols-2 p-30'>
+            <div className=' w-full grid grid-cols-2 px-20 py-30'>
                 <div className='w-full h-full flex flex-col gap-4 hero-secondary-container'>
                     <h2 className='hero-secondary text-black text-8xl font-bold'>Earbuds 109PX</h2>
-                    <p className='hero-secondary text-neutral-800'>From deep bass to crisp highs, every detail is delivered with stunning clarity. Engineered for comfort and powered by cutting-edge drivers.</p>
-                    <button className='hero-secondary mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black'>
-                        Explore Product
+
+                    <div className='flex items-center hero-secondary text-sm gap-2 flex-wrap'>
+                        <span className="bg-pink-700 py-3 px-8 flex items-center gap-2 text-white rounded-full"> <Ear /> Noise Isolation</span>
+                        <span className="bg-yellow-500 py-3 px-8 flex items-center gap-2 text-white rounded-full"><AudioLines /> Deep Bass</span>
+                        <span className="bg-green-700 py-3 px-8 flex items-center gap-2 text-white rounded-full"><LoaderPinwheel /> Wireless Freedom</span>
+                    </div>
+
+                    <p className='hero-secondary text-neutral-800'>
+                        From deep bass to crisp highs, every detail is delivered with stunning clarity.
+                        Engineered for comfort and powered by cutting-edge drivers.
+                    </p>
+
+                    <button className='hero-secondary flex items-center justify-center gap-2 mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black hover:bg-black hover:text-white transition-all duration-300'>
+                        Explore Product <MoveRight />
                     </button>
                 </div>
+
                 <div></div>
 
             </div>

@@ -46,10 +46,10 @@ export default function Feature2() {
 
         gsap.fromTo('.transition-page-changer', {
             scale: 0,
-            opacity: 0, 
+            opacity: 1, 
         }, {
             ease: 'none',
-            opacity: 1,
+            opacity: 0,
             scale: 12,
             scrollTrigger: {
                 trigger: '.transition-page-changer',
@@ -87,7 +87,7 @@ export default function Feature2() {
 
 
             <div className="next-section">
-                {/* <Feature3 /> */}
+                <Feature3 />
             </div>
         </div>
     )
