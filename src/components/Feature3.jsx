@@ -21,11 +21,10 @@ export default function Feature3() {
           toggleActions: 'play none none reverse',
         }
       }
-
     )
   }, [])
   return (
-    <div className='bg-white w-[100dvw] h-[400dvh] z-500 Feature3'>
+    <div className='bg-black w-[100dvw] h-[400dvh] Feature3'>
       <span className='text-lg'>Hwllo
       </span>
     </div>
