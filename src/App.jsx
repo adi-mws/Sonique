@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection'
 import Feature from './components/Feature'
 import Feature2 from './components/Feature2'
 import Feature3 from './components/Feature3'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <HeroSection />
       <Feature />
       <Feature2 />
+      <Footer />
     </>
   )
 }

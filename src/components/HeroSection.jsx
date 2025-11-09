@@ -25,7 +25,7 @@ export default function HeroSection() {
             { scale: 1, y: 0, opacity: 1, },
             {
                 scale: .8,
-                x: 340,
+                x: 200,
                 scrollTrigger: {
                     trigger: earbudsRef.current,  // element that triggers the animation
                     start: "top top",
@@ -36,30 +36,27 @@ export default function HeroSection() {
                 }
             }
         )
-        // gsap.fromTo(
-        //     ".HeroSection",
-        //     { backgroundColor: "white" }, // use same property name
-        //     {
-        //       backgroundColor: "black",
-        //       scrollTrigger: {
-        //         trigger: ".HeroSection",
-        //         start: "bottom 200%",  // when top of section reaches middle
-        //         end: "bottom+=100px top",
-        //         onEnter: () => console.log("Middle reached!"),
-        //         toggleActions: "play none none reverse",
-        //         markers: true
-        //       }
-        //     }
-        //   );
+        gsap.to(
+            ".HeroSection",
+       {
+              scrollTrigger: {
+                trigger: ".HeroSection",
+                start: "bottom 200%",  // when top of section reaches middle
+                end: "bottom+=100px top",
+                onEnter: () => console.log("Middle reached!"),
+                toggleActions: "play none none reverse",
+              }
+            }
+          );
 
         gsap.fromTo('.hero-secondary', {
             x: -200,
             opacity: 0,
-            stagger: 0.5
+            stagger: 0.2
         }, {
             x: 0,
             opacity: 1,
-            stagger: 0.3,
+            stagger: 0.2,
             scrollTrigger: {
                 trigger: '.hero-secondary-container',
                 start: 'top 80%',
@@ -72,12 +69,12 @@ export default function HeroSection() {
     }, [])
     return (
         // Hero Section
-        <div className='HeroSection h-300 sticky -top-150 w-full flex flex-col items-center justify-end '>
+        <div className='HeroSection overflow-hidden h-300 w-full flex flex-col items-center justify-end '>
             <img
                 src='/imgs/earbuds.png'
                 ref={earbudsRef}
                 alt='earbuds'
-                className='absolute top-20 drop-shadow-2xl drop-shadow-lime-300'
+                className='absolute top-20 z-150 drop-shadow-2xl drop-shadow-lime-300'
             />
             {/* Earbud feature card */}
             <div className='shadow-sm py-3 px-10 absolute top-80 left-[10%] flex items-center gap-4 rounded-xl earbud-feature-card'>
@@ -99,9 +96,9 @@ export default function HeroSection() {
                     <h2 className='hero-secondary text-black text-8xl font-bold'>Earbuds 109PX</h2>
 
                     <div className='flex items-center hero-secondary text-sm gap-2 flex-wrap'>
-                        <span className="bg-pink-700 py-3 px-8 flex items-center gap-2 text-white rounded-full"> <Ear /> Noise Isolation</span>
-                        <span className="bg-yellow-500 py-3 px-8 flex items-center gap-2 text-white rounded-full"><AudioLines /> Deep Bass</span>
-                        <span className="bg-green-700 py-3 px-8 flex items-center gap-2 text-white rounded-full"><LoaderPinwheel /> Wireless Freedom</span>
+                        <span className="bg-neutral-500 py-3 px-8 flex items-center gap-2 text-white rounded-full"> <Ear /> Noise Isolation</span>
+                        <span className="bg-neutral-500 py-3 px-8 flex items-center gap-2 text-white rounded-full"><AudioLines /> Deep Bass</span>
+                        <span className="bg-neutral-500 py-3 px-8 flex items-center gap-2 text-white rounded-full"><LoaderPinwheel /> Wireless Freedom</span>
                     </div>
 
                     <p className='hero-secondary text-neutral-800'>
@@ -109,7 +106,7 @@ export default function HeroSection() {
                         Engineered for comfort and powered by cutting-edge drivers.
                     </p>
 
-                    <button className='hero-secondary flex items-center justify-center gap-2 mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black hover:bg-black hover:text-white transition-all duration-300'>
+                    <button className='hero-secondary flex items-center justify-center gap-2 mt-5 py-3 px-10 border-1 max-w-60 border-black rounded-md text-black hover:bg-black hover:text-white'>
                         Explore Product <MoveRight />
                     </button>
                 </div>

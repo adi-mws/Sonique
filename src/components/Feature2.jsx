@@ -1,12 +1,12 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Feature3 from './Feature3'
+import Feature3 from "./Feature3";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Feature2() {
     useGSAP(() => {
-        // Split the text into words & characters
+        // --- Split Text into Words/Chars ---
         const splitText = (selector) => {
             const elements = gsap.utils.toArray(selector);
             elements.forEach((el) => {
@@ -22,21 +22,19 @@ export default function Feature2() {
 
         splitText(".scroll-color-text");
 
-        // Animate the text — letter-by-letter on scroll
+        // --- Animate Text Words ---
         const textEls = gsap.utils.toArray(".scroll-color-text");
         textEls.forEach((el) => {
             const chars = el.querySelectorAll(".char");
 
-            const tl = gsap.timeline({
+            gsap.timeline({
                 scrollTrigger: {
                     trigger: el,
                     start: "top 80%",
                     end: "top 20%",
                     scrub: true,
                 },
-            });
-
-            tl.to(chars, {
+            }).to(chars, {
                 y: "0%",
                 color: "#FFD700",
                 stagger: 0.05,
@@ -45,50 +43,7 @@ export default function Feature2() {
             });
         });
 
-        // Your other animations (headphone zoom, transitions, etc.)
-        gsap.fromTo(
-            ".headphone-img",
-            { scale: 0 },
-            {
-                scale: 30,
-                opacity: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".Feature2",
-                    start: "top top",
-                    end: "bottom+=500px bottom",
-                    scrub: 1,
-                },
-            }
-        );
-
-        gsap.fromTo(
-            ".transition-page-changer",
-            { scale: 0, opacity: 1 },
-            {
-                opacity: 0,
-                scale: 12,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".transition-page-changer",
-                    start: "top top",
-                    end: "bottom bottom",
-                    toggleActions: "play none none reverse",
-                },
-            }
-        );
-
-        gsap.to(".next-section", {
-            opacity: 1,
-            delay: 0.3,
-            scrollTrigger: {
-                trigger: ".Feature2",
-                start: "top -50%",
-                toggleActions: "play none none reverse",
-            },
-        });
-
-
+        // --- Float Images at Different Speeds ---
         gsap.utils.toArray(".float-img").forEach((img) => {
             const speedClass = Array.from(img.classList).find((cls) =>
                 cls.startsWith("scroll-speed-")
@@ -98,7 +53,7 @@ export default function Feature2() {
                 : 1;
 
             gsap.to(img, {
-                y: -400,
+                y: -450,
                 ease: "none",
                 scrollTrigger: {
                     trigger: ".Feature2",
@@ -108,49 +63,113 @@ export default function Feature2() {
                 },
             });
         });
+
+        // --- Zoom Text Transition ---
+        const zoomTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".zoom-transition",
+                start: "top top",
+                end: "bottom top",
+                scrub: 2,
+                pin: true,
+            },
+        });
+
+        zoomTl
+            .to(".zoom-text", {
+                scale: 16,
+                // opacity: 0,
+                ease: "power2.inOut",
+                duration: 10,
+            }, 0)
+        zoomTl.to(".transition-overlay", {
+            scale: 1,
+            ease: "power2.inOut",
+            duration: 10
+        }, 0)
+            .to(
+                ".transition-overlay",
+                { width: "100%", duration: 3, ease: "power1.inOut" },
+                "-=3"
+            )
+            .to(".transition-overlay", {
+                duration: 3,
+                ease: "power1.out",
+                z: -50,
+            }, "+=5");
     }, []);
 
     return (
-        <div className="Feature2 bg-[url('/imgs/headphone-bg.jpg')] bg-no-repeat bg-[length:100%_100%] bg-center overflow-hidden z-200 bg-neutral-900 w-full flex items-center flex-col sticky top-0">
-            <div className="top-5 relative flex flex-col gap-2">
-                <p className="scroll-color-text text-white uppercase text-7xl font-bold">
-                    Crafted for comfort, tuned
-                </p>
-                <p className="scroll-color-text text-white text-7xl font-bold uppercase">
-                    for perfection.
-                </p>
-            </div>
-            {/* <p className="scroll-color-text text-white uppercase headphone-img text-8xl font-bold top-50 relative"> */}
-            {/* Dive Into Pure Sound */}
-            {/* </p> */}
-            {/* <div className="w-40 h-40 bg-white transition-page-changer absolute z-300 top-[50%] left-[50%] rounded-full translate-x-[-50%] translate-y-[-50%]"></div> */}
-            <p className="scroll-color-text text-white mt-40 mr-10 uppercase bottom-5 text-right relative text-7xl font-bold">
-                Because your ears deserve the very best.
-            </p>
-
-            <div className="div-sections flex p-6">
-                <p className="scroll-color-text flex-1/2 text-white mr-10 uppercase bottom-5 text-left relative text-sm font-bold">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quidem cum natus quae beatae ipsum mollitia recusandae vel, tenetur maiores, suscipit quas blanditiis? Quibusdam cupiditate obcaecati alias magni aut temporibus, assumenda repellendus, accusantium fuga voluptatibus dolor ex aspernatur repudiandae omnis odio! Nam error natus velit vel ea odit soluta hic!
-                </p>
-                <div className="flex-1/2">
-                    <img src="/imgs/headphone-no-frame.svg" alt="" className="float-img" />
+        <>
+            {/* --- Feature 2 Content --- */}
+            <section className="Feature2 bg-[url('/imgs/headphone-bg.jpg')] bg-no-repeat bg-[length:100%_100%] bg-center overflow-hidden bg-neutral-900 w-full flex flex-col items-center relative pb-[40vh]">
+                <div className="mt-20 flex flex-col gap-2">
+                    <p className="scroll-color-text text-white uppercase text-7xl font-bold">
+                        Crafted for comfort, tuned
+                    </p>
+                    <p className="scroll-color-text text-white text-7xl font-bold uppercase">
+                        for perfection.
+                    </p>
                 </div>
-            </div>
 
-            <div className="div-sections flex p-6">
-                <div className="flex-1/2">
-                    <img src="/imgs/earbuds-with-case.png" alt="" className="float-img" />
-                </div>
-                <p className="scroll-color-text flex-1/2 text-white mr-10 uppercase bottom-5 text-left relative text-sm font-bold">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quidem cum natus quae beatae ipsum mollitia recusandae vel, tenetur maiores, suscipit quas blanditiis? Quibusdam cupiditate obcaecati alias magni aut temporibus, assumenda repellendus, accusantium fuga voluptatibus dolor ex aspernatur repudiandae omnis odio! Nam error natus velit vel ea odit soluta hic!
+                <p className="scroll-color-text text-white mt-40 mr-10 uppercase bottom-5 text-right relative text-7xl font-bold">
+                    Because your ears deserve the very best.
                 </p>
-            </div>
 
+                {/* --- Floating Image Sections --- */}
+                <div className="div-sections flex flex-wrap p-6 mt-20 items-center">
+                    <p className="scroll-color-text flex-1 text-white mr-10 uppercase text-left text-3xl font-bold">
+                        Every detail speaks of precision — every curve, every sound, every pixel.
+                        This isn’t just design; it’s an experience engineered to outlive trends and redefine simplicity.
+                    </p>
+                    <div className="flex-1 flex justify-center">
+                        <img
+                            src="/imgs/headphone-no-frame.svg"
+                            alt=""
+                            className="float-img scroll-speed-1 w-[550px]"
+                        />
+                    </div>
+                </div>
 
+                <div className="div-sections flex flex-wrap p-6 items-center">
+                    <div className="flex-1 flex justify-center">
+                        <img
+                            src="/imgs/earbuds-with-case.png"
+                            alt=""
+                            className="float-img scroll-speed-1.5 w-[550px]"
+                        />
+                    </div>
+                    <p className="scroll-color-text flex-1 text-white mr-10 uppercase text-left text-3xl font-bold">
+                        Music isn’t heard, it’s felt.
+                        When innovation meets soul, even silence begins to sound beautiful.
+                    </p>
+                </div>
 
-            <div className="next-section">
-                <Feature3 />
-            </div>
-        </div>
+                <div className="div-sections flex flex-wrap p-6 items-center">
+                    <p className="scroll-color-text flex-1 text-white mr-10 uppercase text-left text-3xl font-bold">
+                        We don’t build products we shape emotions into form.
+                        Each line of design, each wave of motion, is crafted to inspire the creator in you
+                    </p>
+                    <div className="flex-1 flex justify-center">
+                        <img
+                            src="/imgs/earbud-in-air.png"
+                            alt=""
+                            className="float-img scroll-speed-2 w-[750px]"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* --- Zoom Transition Section --- */}
+            <section className="zoom-transition bg-[url('/imgs/bg-feature-3.jpg')] bg-no-repeat bg-[length:100%_100%] relative h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+                <h1 className="zoom-text text-8xl font-bold uppercase">
+                    Experience Sound
+                </h1>
+                <div className="transition-overlay flex items-center justify-center absolute left-[50%] -translate-x-[50%] top-0 w-[10%] h-full bg-white z-50 -scale-5">
+                    <h1 className="8xl">na'osidjf asijdfo iajsof dij</h1>
+                </div>
+            </section>
+            <Feature3 />
+        </>
     );
 }

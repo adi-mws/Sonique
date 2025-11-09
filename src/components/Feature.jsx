@@ -84,7 +84,7 @@ export default function Feature() {
 
   }, [])
   return (
-    <div className='bg-black w-full quality-bg overflow-hidden h-[100dvh] sticky top-0 z-100 py-10 px-10 flex flex-row items-center'>
+    <div className='bg-black w-full overflow-hidden h-[100dvh] py-10 px-10 flex flex-row items-center'>
       <div className='w-full flex-1/2 flex flex-col h-full items-center'>
         <p className='text-6xl feature-title-text text-white font-bold relative'>Full <span className='text-lime-400'>Quality </span> Assurance</p>
         <div className="flex flex-col gap-2 mt-10 feature-card-container">
