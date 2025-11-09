@@ -161,7 +161,7 @@ export default function Feature2() {
             </section>
 
             {/* --- Zoom Transition Section --- */}
-            <section className="zoom-transition bg-[url('/imgs/bg-feature-3.jpg')] bg-no-repeat bg-[length:100%_100%] relative h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+            <section className="zoom-transition relative h-screen flex items-center justify-center overflow-hidden bg-neutral-900 text-white">
                 <h1 className="zoom-text text-8xl font-bold uppercase">
                     Experience Sound
                 </h1>
