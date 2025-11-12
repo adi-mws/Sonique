@@ -101,7 +101,6 @@ export default function Feature2() {
 
     return (
         <>
-            {/* --- Feature 2 Content --- */}
             <section className="Feature2 bg-[url('/imgs/headphone-bg.jpg')] bg-no-repeat bg-[length:100%_100%] bg-center overflow-hidden bg-neutral-900 w-full flex flex-col items-center relative pb-[40vh]">
                 <div className="mt-20 flex flex-col gap-2">
                     <p className="scroll-color-text text-white uppercase text-7xl font-bold">
